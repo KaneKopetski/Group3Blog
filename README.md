@@ -17,8 +17,11 @@ To get started:
 2. Run the application using your preferred IDE or by running this terminal command from the project root: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=cloud;-DDB_URL=jdbc:postgresql://localhost:5432/group3blog;-DDB_UN=postgres;-DDB_PW=password"
 
   2a. The application is configured to launch locally with an in-mem H2 DB and on PCF with a PostgreSQL DB. The profile is selected for you. To configure DB password and URL, see documentation
+  
 3. Launch Postman
+
 4. Register and login
+
 7. You may now using any of the actuator, post, or comment endpoints defined in the documentation.
 
 [Documentation found here.](https://app.swaggerhub.com/apis-docs/Zipcode-Wilmington/BlogDoc/0.1)
