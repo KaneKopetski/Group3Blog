@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -19,8 +20,6 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private PostRepository postRepository;
 
     @PostMapping
     public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
@@ -30,8 +29,8 @@ public class PostController {
 
     @Valid
     @GetMapping
-    public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<Post> allPosts = postRepository.findAllBy(pageable);
+    public ResponseEntity<List<PostDTO>> showAllPosts() {
+        List<PostDTO> allPosts = postService.showAllPosts();
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 

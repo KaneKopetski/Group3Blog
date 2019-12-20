@@ -1,5 +1,6 @@
 package com.zipcode.group3blog.service;
 
+import com.zipcode.group3blog.dto.CommentDTO;
 import com.zipcode.group3blog.dto.PostDTO;
 import com.zipcode.group3blog.exceptions.PostNotFoundException;
 import com.zipcode.group3blog.model.Post;
@@ -24,10 +25,8 @@ public class PostService {
 
     @Transactional
     public List<PostDTO> showAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        return posts.stream()
-                .map(this::mapFromPostToDTO)
-                .collect(toList());
+        List<Post> comments = postRepository.findAll();
+        return comments.stream().map(this::mapFromPostToDTO).collect(toList());
     }
 
     @Transactional
