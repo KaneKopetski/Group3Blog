@@ -1,6 +1,5 @@
 package com.zipcode.group3blog.service;
 
-import com.zipcode.group3blog.dto.CommentDTO;
 import com.zipcode.group3blog.dto.PostDTO;
 import com.zipcode.group3blog.exceptions.PostNotFoundException;
 import com.zipcode.group3blog.model.Post;
