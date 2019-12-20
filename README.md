@@ -22,7 +22,7 @@ To get started:
 
 4. Register and login
 
-7. You may now using any of the actuator, post, or comment endpoints defined in the documentation.
+7. You may now use any of the actuator, post, or comment endpoints defined in the documentation.
 
 [Documentation found here.](https://app.swaggerhub.com/apis-docs/Zipcode-Wilmington/BlogDoc/0.1)
 
