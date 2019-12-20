@@ -66,5 +66,17 @@ public class ImageService {
         image.setUsername(loggedInUser.getUsername());
         return image;
     }
+    @Transactional
+    public List<ImageDTO> showAllImagesByPost(Long postId) {
+        List<Image> images = imageRepository.findByPost_PostId(postId);
+        return images.stream().map(this::mapFromImageToDTO).collect(toList());
+    }
+    @Transactional
+    public void updateImage(ImageDTO newImageDTO){
+        Image image = imageRepository.getOne(newImageDTO.getId());
+        image.setImageContent(newImageDTO.getImageContent());
+        image.setUpdatedOn(Instant.now());
+        imageRepository.save(image);
+    }
 
 }

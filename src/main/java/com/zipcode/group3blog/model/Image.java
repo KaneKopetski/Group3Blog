@@ -1,5 +1,7 @@
 package com.zipcode.group3blog.model;
 
+
+
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,5 +26,7 @@ public class Image {
     private String username;
     @ManyToOne
     private Post post;
+    @Column
+    private Instant updatedOn;
 
 }
