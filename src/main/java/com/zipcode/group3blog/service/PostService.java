@@ -17,6 +17,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class PostService {
 
+
     @Autowired
     private AuthService authService;
     @Autowired
@@ -31,9 +32,9 @@ public class PostService {
     }
 
     @Transactional
-    public void createPost(PostDTO postDto) {
+    public Post createPost(PostDTO postDto) {
         Post post = mapFromDTOToPost(postDto);
-        postRepository.save(post);
+        return postRepository.save(post);
     }
 
     @Transactional
@@ -43,7 +44,7 @@ public class PostService {
         return mapFromPostToDTO(post);
     }
 
-    private PostDTO mapFromPostToDTO(Post post) {
+    public PostDTO mapFromPostToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setPostId(post.getPostId());
         postDTO.setTitle(post.getTitle());
@@ -52,7 +53,7 @@ public class PostService {
         return postDTO;
     }
 
-    private Post mapFromDTOToPost(PostDTO postDTO) {
+    public Post mapFromDTOToPost(PostDTO postDTO) {
         Post post = new Post();
         post.setTitle(postDTO.getTitle());
         post.setContent(postDTO.getContent());
