@@ -20,8 +20,12 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
-        postService.createPost(postDTO);
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            postService.createPost(postDTO);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @Valid
