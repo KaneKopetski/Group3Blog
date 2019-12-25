@@ -1,7 +1,5 @@
 package com.zipcode.group3blog.dto;
 
-import com.zipcode.group3blog.model.Post;
-
 public class CommentDTO {
     private Long postId;
     private String username;

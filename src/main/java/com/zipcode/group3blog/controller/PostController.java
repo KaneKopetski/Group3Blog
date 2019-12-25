@@ -3,15 +3,13 @@ package com.zipcode.group3blog.controller;
 import com.zipcode.group3blog.dto.PostDTO;
 import com.zipcode.group3blog.exceptions.PostNotFoundException;
 import com.zipcode.group3blog.model.Post;
-import com.zipcode.group3blog.repository.PostRepository;
 import com.zipcode.group3blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -19,19 +17,26 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private PostRepository postRepository;
 
     @PostMapping
     public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
-        postService.createPost(postDTO);
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            postService.createPost(postDTO);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @Valid
     @GetMapping
-    public ResponseEntity<Page<Post>> showAllPosts(Pageable pageable) {
-        Page<Post> allPosts = postRepository.findAllBy(pageable);
+    public ResponseEntity<List<PostDTO>> showAllPosts() {
+        List<PostDTO> allPosts;
+       try {
+           allPosts = postService.showAllPosts();
+       } catch (Exception e) {
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+       }
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
@@ -42,6 +47,7 @@ public class PostController {
 
     @DeleteMapping("/delete/{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
+
         postService.deletePost(postId);
         return new ResponseEntity<>(HttpStatus.OK);
         }

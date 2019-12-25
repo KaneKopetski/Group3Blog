@@ -1,152 +1,43 @@
 # stabbr: twitter but sharp
 
 This is a web application being designed by:
-Vaidehi Paranjape
-Kendra Ng
-John (like I'm going to spell his whole name)
-Kane Kopetski
+
+[Vaidehi Paranjape (Tech Lead)](https://github.com/vaidehi4321)
+
+[Kendra Ng](https://github.com/kendrang)
+
+[John Tokhi](https://github.com/tokhij)
+
+[Kane Kopetski](https://github.com/KaneKopetski)
+
+It was made as a group project during Zipcode Wilmington cohort 5.2. It is designed to operate as a blog with the eventual end of being similar to Twitter.
 
 To get started:
 1. Clone the project
-2. Run the application
-  2a. The application is configured to launch locally with an in-mem H2 DB and on PCF with a PostgreSQL DB. The profile is select for you. To configure DB password and URL, see section Changing Environment Variables
+2. Run the application using your preferred IDE or by running this terminal command from the project root: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=cloud;-DDB_URL=jdbc:postgresql://localhost:5432/group3blog;-DDB_UN=postgres;-DDB_PW=password"
+
+  2a. The application is configured to launch locally with an in-mem H2 DB and on PCF with a PostgreSQL DB. The profile is selected for you. To configure DB password and URL, see documentation
+  
 3. Launch Postman
-4. Register a new account using the signup endpoint defined below
-5. Login using the login endpoint defined below
-  5a. stabbr authenticates using JWT
-7. You may now using any of the actuator, post, or comment endpoints defined below
 
-Base local URL: localhost:4000
-Base cloud URL: https://zcw-group3blogproject.cfapps.io/
+4. Register and login
 
-## Authentication Endpoints:
+7. You may now using any of the actuator, post, or comment endpoints defined in the documentation.
 
-------------------
+[Documentation found here.](https://app.swaggerhub.com/apis-docs/Zipcode-Wilmington/BlogDoc/0.1)
 
-Base endpoint:
+# Deployment Steps:
 
-/api/auth
+Note: You will need PCF CLI. Get it [here](https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry/install-the-cf-cli) if you do not have it.
 
-Methods accepted: None
+1. Clone to the repo
 
-/signup
-Methods accepted: POST
-JSON Payload:
-{
-"username": "yourdesiredsernamehere",
-"password": "yourdesiredpasswordhere",
-"email": "youremailaddresshere"
-}
+2. Navigate to the project root directory using your terminal
 
-/login
-Methods accepted: POST
-JSON Payload:
-{
-"username": "yourusernamehere",
-"password": "yourpasswordhere",
-}
+3. Get a clean build using this command: ./mvnw clean package
 
-------------------
+4. After the build completes, push it to PCF using this command: cf push --no-start
 
-## Post Endpoints:
-
-------------------
-
-/api/posts
-Methods accepted: GET, POST, PUT
-
-###GET
-Returns paginated list of all posts. Dynamically paged using URL params.
-
-###POST:
-Creates a new post.
-JSON Payload:
-{
-"title": "desiredtitlehere",
-"content": "desiredcontenthere",
-"username": "authenticatedusernamehere"
-}
-
-###PUT:
-Updates given post. Throws PostNotFoundException if post provided does not exist.
-JSON Payload:
-{
-"postId": "idtoupdatehere",
-"title": "desiredtitlehere",
-"content": "desiredcontenthere",
-"username": "authenticatedusernamehere"
-}
-
-------------------
-
-/api/posts/:postId
-Methods accepted: GET
-
-###GET
-Return post with provided post ID.
-
-------------------
-
-/api/posts/delete/:postId
-Methods accepted: DELETE
-
-###DELETE:
-Delete post with provided post ID.
-
-------------------
-
-## Comment Endpoints
-
-------------------
-
-/api/comments
-Methods accepted: GET, POST, PUT
-
-###GET
-Returns paginated list of all comments. Dynamically paged using URL params.
-
-###POST:
-Creates a new comment.
-JSON Payload:
-{
-"postId": idhere,
-"content": "desiredcontenthere",
-"username": "authenticatedusernamehere"
-}
-
-###PUT:
-Updates given comments. Throws CommentNotFoundException if comment provided does not exist.
-JSON Payload:
-{
-"commentId": "idtoupdatehere",
-"content": "desiredcontenthere",
-"username": "authenticatedusernamehere"
-}
-
-------------------
-
-/api/comments/:commentId
-Methods accepted: GET
-
-###GET
-Return comment with provided comment ID.
-
-------------------
-
-/api/comments/delete/:commentId
-Methods accepted: DELETE
-
-###DELETE:
-Delete comment with provided comment ID.
-
-------------------
-
-/post/{postId}
-
-Methods accepted: GET
-
-###GET
-
-Returns comments associated with provided post ID.
+5. If the push is successful, start the service using cf start zcw-group3blogproject
 
 
