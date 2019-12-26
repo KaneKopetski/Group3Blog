@@ -73,7 +73,7 @@ public class PostControllerTest {
         List<PostDTO> allPosts;
         allPosts =postService.showAllPosts();
         ResponseEntity responseEntity = postController.showAllPosts();
-       //
+
         // when(postService.showAllPosts()).then()
         Assert.assertEquals((HttpStatus.OK),responseEntity.getStatusCode());
 
