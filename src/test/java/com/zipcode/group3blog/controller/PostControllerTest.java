@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
@@ -66,7 +67,16 @@ public class PostControllerTest {
         ResponseEntity responseEntity = postController.showAllPosts();
         assertEquals((HttpStatus.INTERNAL_SERVER_ERROR),responseEntity.getStatusCode());
     }
+    @Test
+    public void showAllPostTest(){
+        Pageable pageable = null;
+        List<PostDTO> allPosts;
+        allPosts =postService.showAllPosts();
+        ResponseEntity responseEntity = postController.showAllPosts();
+       //
+        // when(postService.showAllPosts()).then()
+        Assert.assertEquals((HttpStatus.OK),responseEntity.getStatusCode());
 
 
-
+    }
 }
