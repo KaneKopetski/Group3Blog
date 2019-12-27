@@ -28,15 +28,6 @@ public class Image {
     @OneToOne
     private Post post;
 
-    public Image() {
-    }
-
-    public Image(String name, String type, byte[] img) {
-        this.name = name;
-        this.type = type;
-        this.image = img;
-    }
-
     public Long getImageId() {
         return imageId;
     }

@@ -7,6 +7,6 @@ package com.zipcode.group3blog.repository;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long> {
-    List<Image> findByPost_PostId(Long postId);
+    Image findByPost_PostId(Long postId);
 
 }

@@ -4,6 +4,7 @@ import com.zipcode.group3blog.dto.LoginRequest;
 import com.zipcode.group3blog.dto.RegisterRequest;
 import com.zipcode.group3blog.service.AuthService;
 import com.zipcode.group3blog.service.AuthenticationResponse;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
