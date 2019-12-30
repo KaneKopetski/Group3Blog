@@ -86,22 +86,12 @@
 			<artifactId>spring-security-rsa</artifactId>
 			<version>1.0.5.RELEASE</version>
 		</dependency>
-<<<<<<< HEAD
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-=======
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
->>>>>>> f568857d3c255b9968d2e5427c11bcf2fd2a2066
-
 	<build>
 		<plugins>
 			<plugin>
