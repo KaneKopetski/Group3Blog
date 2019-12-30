@@ -44,7 +44,7 @@ public class PostService {
         return mapFromPostToDTO(post);
     }
     public List<PostDTO> showAllPostByPostTag(Long postTagId) {
-        List<Post> postList = postTagRepository.findByPostTag_PostTagId(postTagId);
+        List<Post> postList = postTagRepository.findByPost_PostId(postTagId);
         return postList.stream().map(this::mapFromPostToDTO).collect(toList());
 
     }

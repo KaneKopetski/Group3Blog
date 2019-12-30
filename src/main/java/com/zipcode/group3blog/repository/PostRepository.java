@@ -12,6 +12,5 @@ import java.util.List;
 @Transactional
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-   Page<Post> findAllBy(Pageable pageable);
 
 }

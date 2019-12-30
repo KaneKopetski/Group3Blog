@@ -10,24 +10,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/postTags")
+@RequestMapping("/api/tags")
 public class PostTagController {
-    @Autowired
-    PostTagService postTagService;
 
-    @PostMapping("/postTag")
-    public ResponseEntity createPostTag(@RequestBody PostTagDTO posTagDTO){
-        postTagService.createPostTag(posTagDTO);
+    @Autowired
+    private PostTagService postTagService;
+
+    @PostMapping
+    public ResponseEntity createPostTag(@RequestBody PostTagDTO postTagDTO){
+        postTagService.createPostTag(postTagDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-    @GetMapping("/postTag")
+
+    @GetMapping
     public ResponseEntity<List<PostTagDTO>> showPostTags(){
-        List<PostTagDTO> allPostTag =postTagService.showAllPostTags();
+        List<PostTagDTO> allPostTag = postTagService.showAllPostTags();
         return new ResponseEntity<>(allPostTag,HttpStatus.OK);
     }
-    @DeleteMapping("/postTag/{postTagId}")
-    public ResponseEntity<Boolean> deletePostTagById(@PathVariable @RequestBody Long postTagId){
+
+    @DeleteMapping("/{postTagId}")
+    public ResponseEntity<Boolean> deletePostTagById(@PathVariable Long postTagId){
         postTagService.deletePostTag(postTagId);
         return  new ResponseEntity<>(HttpStatus.OK);
     }

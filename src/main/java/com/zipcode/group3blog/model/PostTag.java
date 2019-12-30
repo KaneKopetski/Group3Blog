@@ -1,17 +1,8 @@
 package com.zipcode.group3blog.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-@Getter
-@Setter
 @Entity
 public class PostTag {
     @Id
@@ -25,11 +16,27 @@ public class PostTag {
     @ManyToOne
     private Post post;
 
-            @Override
-    public String toString() {
-        return "PostTags{" +
-                "tagId=" + tagId +
-                ", tagName=" + tagName +
-                '}';
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

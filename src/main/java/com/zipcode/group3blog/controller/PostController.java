@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/posts")
 public class PostController {
 
@@ -64,7 +63,7 @@ public class PostController {
     }
     @GetMapping("/post/{postTagId}")
     public ResponseEntity<List<PostDTO>> findByPostTag(@PathVariable @RequestBody Long postTagId){
-        return new ResponseEntity<>(postService.showAllPostByPostTag(postTagId),HttpStatus.OK);
+        return new ResponseEntity<>(postService.showAllPostByPostTag(postTagId), HttpStatus.OK);
     }
 }
 
