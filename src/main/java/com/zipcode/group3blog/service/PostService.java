@@ -24,8 +24,8 @@ public class PostService {
 
     @Transactional
     public List<PostDTO> showAllPosts() {
-        List<Post> comments = postRepository.findAll();
-        return comments.stream().map(this::mapFromPostToDTO).collect(toList());
+        List<Post> posts = postRepository.findAll();
+        return posts.stream().map(this::mapFromPostToDTO).collect(toList());
     }
 
     @Transactional

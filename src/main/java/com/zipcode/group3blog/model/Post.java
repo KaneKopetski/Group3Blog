@@ -17,7 +17,6 @@ private Long postId;
 private String title;
 @Lob
 @Column
-@Type(type = "org.hibernate.type.TextType")
 @NotEmpty
 private byte[] content;
 @Column
