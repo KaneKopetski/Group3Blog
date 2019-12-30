@@ -8,21 +8,21 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
-public class PostTags {
+public class PostTag {
     @Id
     @GeneratedValue
     private Long tagId;
     @NotBlank
     @OneToMany
-    private Long tagName;
+    private String tagName;
 
-    private List<PostTags> tagList;
+    private List<PostTag> tagList;
 
     public Long getTagId() {
         return tagId;
     }
 
-    public Long getTagName() {
+    public String getTagName() {
         return tagName;
     }
 
@@ -30,7 +30,7 @@ public class PostTags {
         this.tagId = tagId;
     }
 
-    public void setTagName(Long tagName) {
+    public void setTagName(String tagName) {
         this.tagName = tagName;
     }
 
