@@ -16,16 +16,25 @@ import java.io.IOException;
 @RequestMapping(path = "/api/images")
 public class ImageController {
 
-  //  @Autowired
-//    ImageService imageService;
+    @Autowired
+    ImageService imageService;
     @Autowired
     ImageRepository imageRepository;
 
+//    @PostMapping("/upload")
+//    public ResponseEntity createImage(@RequestBody ImageDTO imageDTO){
+//        imageService.createImage(imageDTO);
+//        return new ResponseEntity(HttpStatus.CREATED);
+//    }
+
     @PostMapping("/upload")
-    public Image uploadImage(@RequestParam("myFile") MultipartFile file) throws IOException {
-        Image img = new Image( file.getOriginalFilename(), file.getContentType(), file.getBytes());
-        final Image savedImage = imageRepository.save(img);
-        return savedImage;
+    public ResponseEntity createImage(@RequestParam MultipartFile file) throws IOException {
+        Image image = new Image();
+        image.setImage(file.getBytes());
+        image.setName(file.getName());
+        image.setType(file.getContentType());
+        imageRepository.save(image);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping("/get/{id}")

@@ -1,5 +1,7 @@
 package com.zipcode.group3blog.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class PostDTO {
 private Long postId;
 private String title;
