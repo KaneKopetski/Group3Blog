@@ -1,6 +1,7 @@
 package com.zipcode.group3blog.model;
 
 import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -18,7 +19,7 @@ private String title;
 @Column
 @Type(type = "org.hibernate.type.TextType")
 @NotEmpty
-private String content;
+private byte[] content;
 @Column
 private Instant createdOn;
 @Column
@@ -39,11 +40,11 @@ private String username;
         this.title = title;
     }
 
-    public String getContent() {
+    public byte[] getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(byte[] content) {
         this.content = content;
     }
 

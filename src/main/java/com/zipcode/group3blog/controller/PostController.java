@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/posts")
 public class PostController {
 
@@ -27,7 +26,7 @@ public class PostController {
     public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
         String username = postDTO.getUsername();
         String title = postDTO.getTitle();
-        String content = postDTO.getContent();
+        byte[] content = postDTO.getContent();
         LOGGER.info("Post creation request received. Username: {}", username);
         LOGGER.info("Post creation request received. Title: {}", title);
         LOGGER.info("Post creation request received. Content: {}", content);

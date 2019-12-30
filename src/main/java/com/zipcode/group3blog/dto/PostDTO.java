@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class PostDTO {
 private Long postId;
 private String title;
-private String content;
+private byte[] content;
 private String username;
 
     public Long getPostId() {
@@ -24,11 +24,11 @@ private String username;
         this.title = title;
     }
 
-    public String getContent() {
+    public byte[] getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(byte[] content) {
         this.content = content;
     }
 
