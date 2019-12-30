@@ -16,18 +16,18 @@ public class PostTagController {
     @Autowired
     PostTagService postTagService;
 
-    @PostMapping
+    @PostMapping("/postTag")
     public ResponseEntity createPostTag(@RequestBody PostTagDTO posTagDTO){
         postTagService.createPostTag(posTagDTO);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping("/postTag")
     public ResponseEntity<List<PostTagDTO>> showPostTags(){
         List<PostTagDTO> allPostTag =postTagService.showAllPostTags();
         return new ResponseEntity<>(allPostTag,HttpStatus.OK);
     }
-    @DeleteMapping
-    public ResponseEntity<Boolean> deletePostTagById(@PathVariable @RequestBody Long id){
+    @DeleteMapping("/postTag/{postTagId}")
+    public ResponseEntity<Boolean> deletePostTagById(@PathVariable @RequestBody Long postTagId){
         postTagService.deletePostTag(id);
         return  new ResponseEntity<>(HttpStatus.OK);
     }

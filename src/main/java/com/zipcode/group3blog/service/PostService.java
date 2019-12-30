@@ -40,7 +40,11 @@ public class PostService {
                 new PostNotFoundException("For id " + id));
         return mapFromPostToDTO(post);
     }
+    public List<PostDTO> showAllPostByPostTag(Long postTagId) {
+        List<Post> postList = postRepository.findByPostTag_PostTagId(postTagId);
+        return postList.stream().map(this::mapFromPostToDTO).collect(toList());
 
+    }
     private PostDTO mapFromPostToDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setPostId(post.getPostId());
