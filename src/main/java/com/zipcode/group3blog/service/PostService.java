@@ -4,6 +4,7 @@ import com.zipcode.group3blog.dto.PostDTO;
 import com.zipcode.group3blog.exceptions.PostNotFoundException;
 import com.zipcode.group3blog.model.Post;
 import com.zipcode.group3blog.repository.PostRepository;
+import com.zipcode.group3blog.repository.PostTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class PostService {
     private AuthService authService;
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private PostTagRepository postTagRepository;
 
     @Transactional
     public List<PostDTO> showAllPosts() {
@@ -41,7 +44,7 @@ public class PostService {
         return mapFromPostToDTO(post);
     }
     public List<PostDTO> showAllPostByPostTag(Long postTagId) {
-        List<Post> postList = postRepository.findByPostTag_PostTagId(postTagId);
+        List<Post> postList = postTagRepository.findByPostTag_PostTagId(postTagId);
         return postList.stream().map(this::mapFromPostToDTO).collect(toList());
 
     }

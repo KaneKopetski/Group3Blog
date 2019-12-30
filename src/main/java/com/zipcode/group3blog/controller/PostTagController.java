@@ -28,7 +28,7 @@ public class PostTagController {
     }
     @DeleteMapping("/postTag/{postTagId}")
     public ResponseEntity<Boolean> deletePostTagById(@PathVariable @RequestBody Long postTagId){
-        postTagService.deletePostTag(id);
+        postTagService.deletePostTag(postTagId);
         return  new ResponseEntity<>(HttpStatus.OK);
     }
 

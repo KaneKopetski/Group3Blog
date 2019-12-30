@@ -1,40 +1,31 @@
 package com.zipcode.group3blog.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Getter
+@Setter
 @Entity
 public class PostTag {
     @Id
     @GeneratedValue
     private Long tagId;
+    @Column
     @NotBlank
-    @OneToMany
     private String tagName;
+//    @ManyToMany(mappedBy = "post_tags")
+//    private Set<Post> posts = new HashSet<>();
+    @ManyToOne
+    private Post post;
 
-    private List<PostTag> tagList;
-
-    public Long getTagId() {
-        return tagId;
-    }
-
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
-
-    @Override
+            @Override
     public String toString() {
         return "PostTags{" +
                 "tagId=" + tagId +

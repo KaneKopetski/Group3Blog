@@ -12,7 +12,6 @@ import java.util.List;
 @Transactional
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-   List<Post> findByPostTag_PostTagId(Long PostTagId);
    Page<Post> findAllBy(Pageable pageable);
 
 }

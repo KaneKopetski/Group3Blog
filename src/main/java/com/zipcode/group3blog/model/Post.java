@@ -1,11 +1,19 @@
 package com.zipcode.group3blog.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Post {
@@ -26,6 +34,13 @@ private Instant updatedOn;
 @Column
 @NotBlank
 private String username;
+//    @ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//            name = "post_tags",
+//            joinColumns = { @JoinColumn(name = "postId") },
+//            inverseJoinColumns = { @JoinColumn(name = "tagId") }
+//    )
+//    Set<PostTag> post_tags = new HashSet<>();
 
     public Long getPostId() {
         return postId;
