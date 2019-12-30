@@ -1,11 +1,11 @@
 package com.zipcode.group3blog.dto;
 
 public class ImageDTO {
-    Long id;
+    Long imageId;
     byte[] imageContent;
 
     public Long getId() {
-        return id;
+        return imageId;
     }
 
     public byte[] getImageContent() {
@@ -13,7 +13,7 @@ public class ImageDTO {
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.imageId = id;
     }
 
     public void setImageContent(byte[] imageContent) {

@@ -35,16 +35,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
-                .authorizeRequests()
+        httpSecurity.csrf().disable().authorizeRequests()
                 .antMatchers("/api/auth/**")
                 .permitAll()
                 .antMatchers("/actuator/**")
                 .permitAll()
                 .antMatchers("/h2-console/**")
                 .permitAll()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/**",
+                "/swagger-ui.html",
+                "/webjars/**")
+                .permitAll().anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -55,9 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring()
-                .antMatchers(HttpMethod.OPTIONS, "/**");
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().
+                antMatchers(HttpMethod.OPTIONS, "/**").
+                antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/**",
+                "/swagger-ui.html",
+                "/webjars/**");
     }
 
     @Bean

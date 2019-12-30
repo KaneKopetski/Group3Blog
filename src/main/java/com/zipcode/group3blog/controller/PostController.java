@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/posts")
 public class PostController {
 
@@ -41,12 +42,7 @@ public class PostController {
     @Valid
     @GetMapping
     public ResponseEntity<List<PostDTO>> showAllPosts() {
-        List<PostDTO> allPosts;
-       try {
-           allPosts = postService.showAllPosts();
-       } catch (Exception e) {
-           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-       }
+        List<PostDTO> allPosts = postService.showAllPosts();
         return new ResponseEntity<>(allPosts, HttpStatus.OK);
     }
 
@@ -57,7 +53,6 @@ public class PostController {
 
     @DeleteMapping("/delete/{postId}")
     public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
-
         postService.deletePost(postId);
         return new ResponseEntity<>(HttpStatus.OK);
         }
