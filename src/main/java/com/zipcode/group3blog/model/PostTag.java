@@ -2,6 +2,8 @@ package com.zipcode.group3blog.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class PostTag {
@@ -11,10 +13,8 @@ public class PostTag {
     @Column
     @NotBlank
     private String tagName;
-//    @ManyToMany(mappedBy = "post_tags")
-//    private Set<Post> posts = new HashSet<>();
-    @ManyToOne
-    private Post post;
+    @ManyToMany(mappedBy = "postTags")
+    private Set<Post> posts = new HashSet<>();
 
     public Long getTagId() {
         return tagId;
@@ -32,11 +32,11 @@ public class PostTag {
         this.tagName = tagName;
     }
 
-    public Post getPost() {
-        return post;
+    public Set<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
     }
 }

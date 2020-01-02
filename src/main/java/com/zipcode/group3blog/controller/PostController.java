@@ -61,9 +61,10 @@ public class PostController {
         postService.updatePost(postDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping("/post/{postTagId}")
-    public ResponseEntity<List<PostDTO>> findByPostTag(@PathVariable @RequestBody Long postTagId){
-        return new ResponseEntity<>(postService.showAllPostByPostTag(postTagId), HttpStatus.OK);
+    public ResponseEntity<List<PostDTO>> findByPostTag(@PathVariable @RequestBody Long tagId){
+        return new ResponseEntity<>(postService.showAllPostByPostTag(tagId), HttpStatus.OK);
     }
 }
 
