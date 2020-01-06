@@ -1,8 +1,8 @@
 package com.zipcode.group3blog.model;
 
 import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
 
@@ -24,8 +24,9 @@ private Instant createdOn;
 @Column
 private Instant updatedOn;
 @Column
-@NotBlank
 private String username;
+
+
 
     public Long getPostId() {
         return postId;
@@ -37,14 +38,6 @@ private String username;
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public Instant getCreatedOn() {
@@ -63,6 +56,10 @@ private String username;
         this.updatedOn = updatedOn;
     }
 
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -71,4 +68,11 @@ private String username;
         this.username = username;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }
