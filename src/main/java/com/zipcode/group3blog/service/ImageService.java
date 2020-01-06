@@ -1,12 +1,9 @@
 package com.zipcode.group3blog.service;
 
-import com.zipcode.group3blog.dto.CommentDTO;
 import com.zipcode.group3blog.dto.ImageDTO;
 import com.zipcode.group3blog.exceptions.ImageNotFoundException;
-import com.zipcode.group3blog.model.Comment;
 import com.zipcode.group3blog.model.Image;
 import com.zipcode.group3blog.repository.ImageRepository;
-import com.zipcode.group3blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
