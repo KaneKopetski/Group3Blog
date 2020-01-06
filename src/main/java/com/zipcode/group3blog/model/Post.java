@@ -1,18 +1,11 @@
 package com.zipcode.group3blog.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
-@Getter
-@Setter
 @Entity
 @Table
 public class Post {
@@ -25,20 +18,14 @@ private String title;
 @Column
 @Type(type = "org.hibernate.type.TextType")
 @NotEmpty
-private byte[] content;
+private String content;
 @Column
 private Instant createdOn;
 @Column
 private Instant updatedOn;
 @Column
 private String username;
-@ManyToMany(cascade = { CascadeType.ALL })
-@JoinTable(
-        name = "post_tags",
-        joinColumns = { @JoinColumn(name = "postId") },
-        inverseJoinColumns = { @JoinColumn(name = "tagId") }
-)
-private List<PostTag> postTags = new ArrayList<>();
+
 
 
     public Long getPostId() {
@@ -51,14 +38,6 @@ private List<PostTag> postTags = new ArrayList<>();
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
     }
 
     public Instant getCreatedOn() {
@@ -81,19 +60,19 @@ private List<PostTag> postTags = new ArrayList<>();
         this.postId = postId;
     }
 
-    public List<PostTag> getPostTags() {
-        return postTags;
-    }
-
-    public void setPostTags(List<PostTag> postTags) {
-        this.postTags = postTags;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

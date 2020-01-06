@@ -3,7 +3,7 @@ package com.zipcode.group3blog.dto;
 public class PostDTO {
 private Long postId;
 private String title;
-private byte[] content;
+private String content;
 private String username;
 
     public Long getPostId() {
@@ -22,11 +22,11 @@ private String username;
         this.title = title;
     }
 
-    public byte[] getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

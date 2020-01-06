@@ -26,7 +26,7 @@ public class PostController {
     public ResponseEntity createPost(@RequestBody PostDTO postDTO) {
         String username = postDTO.getUsername();
         String title = postDTO.getTitle();
-        byte[] content = postDTO.getContent();
+        String content = postDTO.getContent();
         LOGGER.info("Post creation request received. Username: {}", username);
         LOGGER.info("Post creation request received. Title: {}", title);
         LOGGER.info("Post creation request received. Content: {}", content);
@@ -46,7 +46,7 @@ public class PostController {
     }
 
     @GetMapping("/get/{postId}")
-    public ResponseEntity<PostDTO> getSinglePost(@PathVariable @RequestBody Long postId) {
+    public ResponseEntity<PostDTO> getSinglePost(@PathVariable Long postId) {
         return new ResponseEntity<>(postService.readSinglePost(postId), HttpStatus.OK);
     }
 
@@ -62,9 +62,5 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/post/{postTagId}")
-    public ResponseEntity<List<PostDTO>> findByPostTag(@PathVariable @RequestBody Long tagId){
-        return new ResponseEntity<>(postService.showAllPostByPostTag(tagId), HttpStatus.OK);
-    }
 }
 
