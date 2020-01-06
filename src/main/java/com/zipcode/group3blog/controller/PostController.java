@@ -56,10 +56,15 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
         }
 
-    @PutMapping
+    @PutMapping()
     public ResponseEntity<Post> updatePost(@RequestBody PostDTO postDTO) throws PostNotFoundException {
         postService.updatePost(postDTO);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/post/{postTagId}")
+    public ResponseEntity<List<PostDTO>> findByPostTag(@PathVariable @RequestBody Long tagId){
+        return new ResponseEntity<>(postService.showAllPostByPostTag(tagId), HttpStatus.OK);
     }
 }
 
